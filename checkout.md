@@ -28,7 +28,7 @@ Product code  | Name                   | Price
   price = co.total
 </pre>
 
-<p>Using an up to date programming language, implement a checkout system that fulfills these requirements.</p>
+<p>Using Ruby, implement a checkout system that fulfills these requirements.</p>
 
 <pre>
 Test data
