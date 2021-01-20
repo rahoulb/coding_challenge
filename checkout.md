@@ -50,6 +50,6 @@ To submit the challenge, please add your solution to a private Github repo and a
 	<li>kunks001</li>
 	<li>neilchandler</li>
 	<li>alexfilatov</li>
-	<li>sashman</li>
+	<li>onisuzume</li>
 	<li>marcelo-vilela</li>
 </ul>
