@@ -51,4 +51,5 @@ To submit the challenge, please add your solution to a private Github repo and a
 	<li>neilchandler</li>
 	<li>alexfilatov</li>
 	<li>onisuzume</li>
+	<li>rajgurung</li>
 </ul>
