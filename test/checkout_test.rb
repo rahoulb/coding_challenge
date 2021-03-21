@@ -1,14 +1,19 @@
-require 'minitest/spec'
+require 'minitest/autorun'
+require 'mocha/minitest'
+require_relative '../lib/checkout'
 
 describe Checkout do
-  subject { Checkout.new(promotional_rules) }
-  let(:promotional_rules) { PromotionalRules.new }
+  describe "calculating prices" do
+    subject { Checkout.new }
+    let(:first_product) { stub code: '001', description: 'First', price: 2.5 }
+    let(:second_product) { stub code: '002', description: 'Second', price: 3.5 }
 
-  it "calculates the price of the selected products" do
+    it "sums the prices of items in the basket" do
+      subject.scan first_product
+      subject.scan second_product
 
-
+      _(subject.total).must_equal 6.0
+    end
   end
-  it "applies a 10% discount if you spend over £60"
-  it "gives a discount on multiple lavender heart purchases"
 
 end
