@@ -1,3 +1,5 @@
+require_relative './item'
+require_relative './promotional_rules'
 class Checkout
   def initialize rules = nil
     @rules = rules || DefaultRules.new
@@ -12,7 +14,7 @@ class Checkout
     sub_total = @rules.calculate_total_for(@scanned_items)
     percentage_discount = @rules.calculate_discount_for(sub_total)
 
-    return (sub_total * (100.0 - percentage_discount)/100.0)
+    return (sub_total * (100.0 - percentage_discount)/100.0).to_f.round(2)
   end
 
   private
