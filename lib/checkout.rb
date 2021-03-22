@@ -1,6 +1,6 @@
 class Checkout
   def initialize rules = nil
-    @rules = rules
+    @rules = rules || self
     @scanned_items = []
   end
 
@@ -9,15 +9,22 @@ class Checkout
   end
 
   def total
-    items = @rules&.adjust_prices_within(@scanned_items) || @scanned_items
+    sub_total = @rules.calculate_total_for(@scanned_items)
+    percentage_discount = @rules.calculate_discount_for(items) || 0.0
 
+    return (sub_total * (100.0 - percentage_discount)/100.0)
+  end
+
+  private
+
+  def calculate_total_for items
     sub_total = items.inject(0.0) do |sub_total, item|
       sub_total += item.price
     end
-    return sub_total if @rules.nil?
+  end
 
-    percentage_discount = @rules.calculate_discount_for(items) || 0.0
-    return (sub_total * (100.0 - percentage_discount)/100.0)
+  def calculate_discount_for items
+    return 0.0
   end
 
 end
