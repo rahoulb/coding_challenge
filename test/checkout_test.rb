@@ -5,7 +5,6 @@ require_relative '../lib/checkout'
 describe Checkout do
   let(:first_product) { stub code: '001', description: 'First', price: 2.5 }
   let(:second_product) { stub code: '002', description: 'Second', price: 3.5 }
-  let(:second_product_with_adjusted_price) { stub code: '002', description: 'Second', price: 3.0 }
   let(:third_product) { stub code: '003', description: 'Third', price: 8.0 }
 
   describe "calculating prices" do
