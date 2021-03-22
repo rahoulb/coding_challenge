@@ -12,3 +12,14 @@ USAGE:
   price = co.total
 ```
 
+## About Docker
+Implementation note: I couldn't get Ruby 2.6.6 to install on my machine
+(I use RBEnv and it only had 2.6.0pre for some reason) - so I used
+Docker to install it.  However, I did most of the work in Ruby 2.5.1 as
+no Ruby 2.6 specific features were used. 
+
+To use on a standard command line just run
+`bundle exec ruby test/integration_test.rb`
+
+To run in docker use
+`docker build .`
