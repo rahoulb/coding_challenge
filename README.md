@@ -12,9 +12,3 @@ USAGE:
   price = co.total
 ```
 
-
-Unit tests are in the test folder
-USAGE:
-```
-bundle exec ruby test/*_test.rb
-```
