@@ -1,6 +1,6 @@
 class Checkout
   def initialize rules = nil
-    @rules = rules || self
+    @rules = rules || DefaultRules.new
     @scanned_items = []
   end
 
@@ -10,21 +10,22 @@ class Checkout
 
   def total
     sub_total = @rules.calculate_total_for(@scanned_items)
-    percentage_discount = @rules.calculate_discount_for(items) || 0.0
+    percentage_discount = @rules.calculate_discount_for(sub_total)
 
     return (sub_total * (100.0 - percentage_discount)/100.0)
   end
 
   private
-
-  def calculate_total_for items
-    sub_total = items.inject(0.0) do |sub_total, item|
-      sub_total += item.price
+  class DefaultRules
+    def calculate_total_for items
+      sub_total = items.inject(0.0) do |sub_total, item|
+        sub_total += item.price
+      end
     end
-  end
 
-  def calculate_discount_for items
-    return 0.0
+    def calculate_discount_for items
+      return 0.0
+    end
   end
 
 end

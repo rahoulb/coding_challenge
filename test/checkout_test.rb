@@ -27,15 +27,13 @@ describe Checkout do
     let(:items) { [first_product, third_product] }
 
     before do
-      rules.expects(:calculate_discount_for).returns(10)
+      rules.expects(:calculate_total_for).with(items).returns(10.5)
+      rules.expects(:calculate_discount_for).with(10.5).returns(10)
     end
 
     it "applies a 10% discount" do
       subject.scan first_product
       subject.scan third_product
-      # 2.5 + 8 = 10.5
-      # with a 10% discount = 9.45
-
       _(subject.total).must_equal 9.45
     end
   end
@@ -44,10 +42,10 @@ describe Checkout do
     subject { Checkout.new rules }
     let(:rules) { stub_everything }
     let(:items) { [second_product, second_product] }
-    let(:adjusted_items) { [second_product_with_adjusted_price, second_product_with_adjusted_price] }
 
     before do
-      rules.expects(:adjust_prices_within).returns(adjusted_items)
+      rules.expects(:calculate_total_for).with(items).returns(6.0)
+      rules.expects(:calculate_discount_for).with(6.0).returns(0)
     end
 
     it "uses special offer pricing" do
